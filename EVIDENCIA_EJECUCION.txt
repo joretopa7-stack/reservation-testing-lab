@@ -1,0 +1,56 @@
+EVIDENCIA DE EJECUCIÓN — Reservation Testing Lab
+==================================================
+Comando ejecutado: python -m pytest -v
+Fecha de ejecución: 2026-08-18 23:05 UTC
+Python: Python 3.12.3
+Pytest: pytest 9.1.1
+
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/claude/reservation-testing-lab/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/claude/reservation-testing-lab
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 39 items
+
+tests/test_reservation_service.py::test_create_valid_reservation_has_confirmed_status PASSED [  2%]
+tests/test_reservation_service.py::test_create_valid_reservation_uses_injected_confirmation_code PASSED [  5%]
+tests/test_reservation_service.py::test_create_normalizes_customer_name_and_service PASSED [  7%]
+tests/test_reservation_service.py::test_create_stores_the_reservation_in_the_repository PASSED [ 10%]
+tests/test_reservation_service.py::test_create_rejects_duplicate_reservation_for_same_date_and_time PASSED [ 12%]
+tests/test_reservation_service.py::test_duplicate_reservation_attempt_does_not_add_a_second_record PASSED [ 15%]
+tests/test_reservation_service.py::test_invalid_reservation_is_not_saved_in_repository PASSED [ 17%]
+tests/test_reservation_service.py::test_create_rejects_invalid_data_for_each_business_rule[nombre-muy-corto] PASSED [ 20%]
+tests/test_reservation_service.py::test_create_rejects_invalid_data_for_each_business_rule[servicio-no-permitido] PASSED [ 23%]
+tests/test_reservation_service.py::test_create_rejects_invalid_data_for_each_business_rule[duracion-no-permitida] PASSED [ 25%]
+tests/test_reservation_service.py::test_create_rejects_invalid_data_for_each_business_rule[fecha-en-fin-de-semana] PASSED [ 28%]
+tests/test_reservation_service.py::test_create_rejects_invalid_data_for_each_business_rule[hora-antes-de-apertura] PASSED [ 30%]
+tests/test_reservation_service.py::test_repository_starts_empty_for_every_test PASSED [ 33%]
+tests/test_reservation_service.py::test_creating_a_reservation_in_one_test_does_not_leak_into_another PASSED [ 35%]
+tests/test_validators.py::test_validate_customer_name_strips_external_whitespace PASSED [ 38%]
+tests/test_validators.py::test_validate_customer_name_rejects_names_shorter_than_three_chars PASSED [ 41%]
+tests/test_validators.py::test_validate_customer_name_accepts_exactly_three_chars_after_trim PASSED [ 43%]
+tests/test_validators.py::test_validate_service_normalizes_allowed_services[asesoria-minuscula] PASSED [ 46%]
+tests/test_validators.py::test_validate_service_normalizes_allowed_services[soporte-mayus-espacios] PASSED [ 48%]
+tests/test_validators.py::test_validate_service_normalizes_allowed_services[demostracion-capitalizada] PASSED [ 51%]
+tests/test_validators.py::test_validate_service_rejects_unknown_service PASSED [ 53%]
+tests/test_validators.py::test_validate_duration_accepts_allowed_values[30-min] PASSED [ 56%]
+tests/test_validators.py::test_validate_duration_accepts_allowed_values[60-min] PASSED [ 58%]
+tests/test_validators.py::test_validate_duration_rejects_disallowed_values[15-min] PASSED [ 61%]
+tests/test_validators.py::test_validate_duration_rejects_disallowed_values[45-min] PASSED [ 64%]
+tests/test_validators.py::test_validate_duration_rejects_disallowed_values[90-min] PASSED [ 66%]
+tests/test_validators.py::test_validate_reservation_date_accepts_future_weekday PASSED [ 69%]
+tests/test_validators.py::test_validate_reservation_date_accepts_the_current_date_itself PASSED [ 71%]
+tests/test_validators.py::test_validate_reservation_date_rejects_past_date PASSED [ 74%]
+tests/test_validators.py::test_validate_reservation_date_rejects_weekend_dates[sabado] PASSED [ 76%]
+tests/test_validators.py::test_validate_reservation_date_rejects_weekend_dates[domingo] PASSED [ 79%]
+tests/test_validators.py::test_validate_reservation_time_accepts_valid_slots[apertura-exacta] PASSED [ 82%]
+tests/test_validators.py::test_validate_reservation_time_accepts_valid_slots[mediodia] PASSED [ 84%]
+tests/test_validators.py::test_validate_reservation_time_accepts_valid_slots[ultimo-bloque-30-min] PASSED [ 87%]
+tests/test_validators.py::test_validate_reservation_time_accepts_valid_slots[ultimo-bloque-60-min] PASSED [ 89%]
+tests/test_validators.py::test_validate_reservation_time_rejects_time_before_opening PASSED [ 92%]
+tests/test_validators.py::test_validate_reservation_time_rejects_slots_ending_after_closing[termina-un-minuto-tarde] PASSED [ 94%]
+tests/test_validators.py::test_validate_reservation_time_rejects_slots_ending_after_closing[termina-despues-de-cierre] PASSED [ 97%]
+tests/test_validators.py::test_validate_reservation_time_rejects_slots_ending_after_closing[inicia-en-hora-de-cierre] PASSED [100%]
+
+============================== 39 passed in 0.05s ==============================
